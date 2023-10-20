@@ -1,3 +1,4 @@
+# Parallel run
 name: react-sample-app-test
 on: push
 jobs:
@@ -19,6 +20,7 @@ jobs:
           cd ./react-sample-app
           npm test
   deploy:
+    needs: test #This make this job to be in sequential order
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
