@@ -27,9 +27,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Install Dependencies
+        run: |
+          cd ./react-sample-app
+          npm ci
       - name: Build Project
         run: |
           cd ./react-sample-app
           npm run build
       - name: Deploy
-        run: echo "Fake Deployment"
+        run: echo "Fake Deployment.."
