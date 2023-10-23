@@ -1,7 +1,7 @@
 name: on
 on: push
 jobs:
-  build: 
+  test: 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,12 +14,24 @@ jobs:
         run: |
            cd ./react-sample-app
            npm run test
+  build:
+      runs-on: ubuntu-latest
+      needs: test 
+      steps:
       - name: Build Code
         run: |
-           cd ./react-sample-app
-           npm run build
+            cd ./react-sample-app
+            npm run build
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: website-artifact
           path: ./react-sample-app/dist/
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+      - name: Deploy
+        run: echo "Deploying..."
