@@ -10,6 +10,11 @@ jobs:
         run: |
           cd ./react-sample-app
           npm ci
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Test Code
         run: |
            cd ./react-sample-app
@@ -20,6 +25,11 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         run: |
           cd ./react-sample-app
