@@ -1,7 +1,5 @@
 name: demo
-on:
-  push:
-    branches: [main]
+on: [workflow_dispatch]
 jobs:
   demo:
     runs-on: ubuntu-latest
@@ -19,8 +17,7 @@ jobs:
             cd ./react-sample-app
             npm run test
         - name: Build Code
-          run: |
-            cd ./react-sample-app
+          run: ./react-sample-app/dist
             npm run build
         - name: Deploy Project
           run: echo "Deploying ..."
