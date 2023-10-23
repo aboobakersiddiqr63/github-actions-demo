@@ -22,4 +22,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: website-artifact
-          path: dist
+          path: |
+            cd ./react-sample-app
+            dist
